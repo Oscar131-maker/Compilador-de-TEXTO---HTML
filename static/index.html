@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Content Replacer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar: Saved Templates -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Templates</h2>
+                <button id="btn-new-template" class="btn-icon" title="New Template">+</button>
+            </div>
+            <div id="template-list" class="template-list">
+                <!-- Template items will be injected here -->
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="workspace">
+            <!-- Top Bar: Template Meta -->
+            <header class="top-bar">
+                <div class="input-group template-name-group">
+                    <label for="template-name">Template Name</label>
+                    <input type="text" id="template-name" placeholder="Untitled Template">
+                </div>
+                <div class="actions">
+                    <button id="btn-save" class="btn btn-primary">Save Template</button>
+                    <button id="btn-delete" class="btn btn-danger hidden">Delete Template</button>
+                </div>
+            </header>
+
+            <!-- Editor Area -->
+            <div class="editor-grid">
+                <!-- HTML Template Section -->
+                <div class="editor-column">
+                    <div class="column-header">
+                        <h3>HTML Template</h3>
+                        <span class="info">Paste your HTML code here</span>
+                    </div>
+                    <textarea id="html-content" placeholder="<html>...</html>"></textarea>
+                </div>
+
+                <!-- Text Content Section -->
+                <div class="editor-column">
+                    <div class="column-header">
+                        <h3>Content Text</h3>
+                        <span class="info">Format: **KEY:** Value</span>
+                    </div>
+                    <textarea id="text-input" placeholder="**H1_Heading:** My New Title..."></textarea>
+                </div>
+            </div>
+
+            <!-- Generation Action -->
+            <footer class="action-footer">
+                <button id="btn-generate" class="btn btn-cta">Match & Generate HTML</button>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Result Modal -->
+    <div id="result-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Generated HTML</h3>
+                <button id="btn-close-modal" class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="stats-bar">
+                    <span id="replacements-count">0 replacements made.</span>
+                    <button id="btn-download" class="btn btn-secondary">Download .html</button>
+                    <button id="btn-copy" class="btn btn-secondary">Copy to Clipboard</button>
+                </div>
+                <textarea id="result-output" readonly></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="modal hidden" style="z-index: 1100;">
+        <div class="modal-content confirm-box">
+            <div class="modal-header">
+                <h3>Confirmation</h3>
+                <button class="btn-close js-close-confirm">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-message">Are you sure you want to proceed?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-cancel" class="btn btn-secondary">Cancel</button>
+                <button id="btn-confirm-yes" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
